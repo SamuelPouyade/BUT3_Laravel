@@ -35,4 +35,18 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::controller(ArticleController::class)->group(function () {
+
+    Route::get('/', 'index');
+    Route::get('/article/create', 'create');
+    Route::get('/article/{id}', 'show');
+    Route::get('/article/{id}/edit', 'edit');
+
+
+    Route::post('/article', 'store');
+    Route::patch('/article/{id}', 'update');
+    Route::delete('/article/{id}', 'destroy');
+
+});
+
 require __DIR__.'/auth.php';
