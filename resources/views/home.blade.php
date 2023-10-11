@@ -42,7 +42,7 @@
     </div>
 </div>
 
-<div class="container-fluid mt-5 p-0"> <!-- Utilisation de container-fluid pour la largeur totale de la page -->
+<div class="container-fluid mt-5 p-0">
     <div class="row">
         <div class="col-md-8">
             <div class="white-band">

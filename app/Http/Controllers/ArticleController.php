@@ -16,10 +16,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-
         $articles = Article::all();
-        return view('article.index', compact('articles'));
 
+        return view('article.index', compact('articles'));
     }
 
 
@@ -39,25 +38,25 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
-            'titre'=>'required',
-            'Contenu'=> 'required',
-            'auteur' => 'required'
+            'titre' => 'required',
+            'Contenu' => 'required',
         ]);
 
-
-        $article = new article([
-            'titre' => $request->get('titre'),
-            'Contenu' => $request->get('Contenu'),
-            'auteur' => $request->get('auteur')
+        $article = new Article([
+            'titre' => $request->input('titre'),
+            'Contenu' => $request->input('Contenu'),
         ]);
 
-
+        // Associez l'utilisateur actuel à l'article en utilisant le nom de l'auteur
+        $article->user_id = auth()->user()->id;
+        $article->auteur = auth()->user()->name;
         $article->save();
-        return redirect('/')->with('success', 'article Ajouté avec succès');
 
+        return redirect('/')->with('success', 'Article ajouté avec succès');
     }
+
+
 
 
     /**
@@ -79,12 +78,17 @@ class ArticleController extends Controller
 
     public function edit($id)
     {
-
         $article = Article::findOrFail($id);
 
-        return view('article.edit', compact('article'));
+        if (auth()->check() && $article) {
+            if ($article->user_id === auth()->user()->id) {
+                return view('article.edit', compact('article'));
+            }
+        }
 
+        return redirect('/')->with('error', 'Vous n\'êtes pas autorisé à modifier cet article.');
     }
+
 
 
     /**
@@ -94,11 +98,8 @@ class ArticleController extends Controller
     {
 
         $request->validate([
-
             'titre'=>'required',
             'Contenu'=> 'required',
-            'auteur' => 'required'
-
         ]);
 
 
@@ -107,7 +108,6 @@ class ArticleController extends Controller
         $article = article::findOrFail($id);
         $article->titre = $request->get('titre');
         $article->content = $request->get('Contenu');
-        $article->auteur = $request->get('auteur');
         $article->update();
 
         return redirect('/')->with('success', 'article Modifié avec succès');

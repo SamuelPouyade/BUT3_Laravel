@@ -26,28 +26,29 @@ Route::get('/', function () {
     ]);
 });
 
+// Route vers le tableau de bord (dashboard) avec Inertia
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Routes pour la gestion du profil de l'utilisateur
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
 Route::controller(ArticleController::class)->group(function () {
+    Route::get('/home', 'index');
+    Route::get('/article/create', [ArticleController::class, 'create'])->name('article.create'); // Création d'un nouvel article
+    Route::get('/article/{id}', [ArticleController::class, 'show'])->name('article.show'); // Affichage d'un article
+    Route::get('/article/{id}/edit', [ArticleController::class, 'edit'])->name('article.edit'); // Édition d'un article
 
-    Route::get('/', 'index');
-    Route::get('/article/create', 'create');
-    Route::get('/article/{id}', 'show');
-    Route::get('/article/{id}/edit', 'edit');
-
-
-    Route::post('/article', 'store');
-    Route::patch('/article/{id}', 'update');
-    Route::delete('/article/{id}', 'destroy');
-
+    Route::post('/article', [ArticleController::class, 'store'])->name('article.store'); // Enregistrement d'un nouvel article
+    Route::patch('/article/{id}', [ArticleController::class, 'update'])->name('article.update'); // Mise à jour d'un article
+    Route::delete('/article/{id}', [ArticleController::class, 'destroy'])->name('article.destroy'); // Suppression d'un article
 });
 
 require __DIR__.'/auth.php';
+
