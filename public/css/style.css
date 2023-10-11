@@ -1,0 +1,27 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+}
+
+.header {
+    background-color: #0074e4;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.blue-band {
+    background-color: #0074e4;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.blue-band-top {
+    margin-top: 20px;
+}
+
+.blue-band-bottom {
+    margin-bottom: 20px;
+}

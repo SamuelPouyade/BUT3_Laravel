@@ -42,14 +42,14 @@ class ArticleController extends Controller
 
         $request->validate([
             'titre'=>'required',
-            'content'=> 'required',
+            'Contenu'=> 'required',
             'auteur' => 'required'
         ]);
 
 
         $article = new article([
             'titre' => $request->get('titre'),
-            'content' => $request->get('content'),
+            'Contenu' => $request->get('Contenu'),
             'auteur' => $request->get('auteur')
         ]);
 
@@ -96,7 +96,7 @@ class ArticleController extends Controller
         $request->validate([
 
             'titre'=>'required',
-            'content'=> 'required',
+            'Contenu'=> 'required',
             'auteur' => 'required'
 
         ]);
@@ -106,7 +106,7 @@ class ArticleController extends Controller
 
         $article = article::findOrFail($id);
         $article->titre = $request->get('titre');
-        $article->content = $request->get('content');
+        $article->content = $request->get('Contenu');
         $article->auteur = $request->get('auteur');
         $article->update();
 
