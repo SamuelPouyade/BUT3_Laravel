@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <a href="{{ route('home') }}" class="btn btn-secondary">Retour à l'accueil</a>
+                <a href="{{ route('home') }}" class="btn btn-primary">Retour à l'accueil</a>
                 <ul class="list-group">
                     <li class="list-group-item">
                         <h1>{{ $article->titre }}</h1>

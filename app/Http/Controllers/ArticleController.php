@@ -1,11 +1,11 @@
 <?php
-// ArticleController.php
 
 namespace App\Http\Controllers;
 
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class ArticleController extends Controller
@@ -16,10 +16,12 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::paginate(15);
 
-        return view('article.index', compact('articles'));
+        return view('article.index', ['articles' => $articles]);
     }
+
+
 
 
     /**
@@ -48,7 +50,6 @@ class ArticleController extends Controller
             'Contenu' => $request->input('Contenu'),
         ]);
 
-        // Associez l'utilisateur actuel à l'article en utilisant le nom de l'auteur
         $article->user_id = auth()->user()->id;
         $article->auteur = auth()->user()->name;
         $article->save();
@@ -96,13 +97,10 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $request->validate([
             'titre'=>'required',
             'Contenu'=> 'required',
         ]);
-
-
 
 
         $article = article::findOrFail($id);
@@ -114,19 +112,21 @@ class ArticleController extends Controller
 
     }
 
-
-
-
     /**
      * Supprime l'article de la base de données
      */
     public function destroy($id)
     {
-
         $article = Article::findOrFail($id);
-        $article->delete();
 
-        return redirect('/')->with('success', 'article Supprimé avec succès');
+        if (auth()->check() && $article) {
+            if ($article->user_id === auth()->user()->id) {
+                $article->delete();
+                return redirect('/')->with('success', 'article Supprimé avec succès');
+            }
+        }
+
+        return redirect('/')->with('error', 'Vous n\'êtes pas autorisé à supprimer cet article.');
 
     }
 
