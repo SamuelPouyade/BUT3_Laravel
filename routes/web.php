@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentaireController;
 use Inertia\Inertia;
 
 /*
@@ -31,6 +32,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/home', [ArticleController::class, 'index'])->name('home');
+Route::post('/article/{articleId}/comment', [CommentaireController::class, 'store'])->name('comment.store');
+Route::get('/articles/{id}/commentaires', [CommentaireController::class, 'index'])->name('comment.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

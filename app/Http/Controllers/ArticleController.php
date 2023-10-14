@@ -119,6 +119,7 @@ class ArticleController extends Controller
 
         if (auth()->check() && $article) {
             if ($article->user_id === auth()->user()->id) {
+                $article->commentaires()->delete();
                 $article->delete();
                 return redirect('/')->with('success', 'article Supprimé avec succès');
             }
