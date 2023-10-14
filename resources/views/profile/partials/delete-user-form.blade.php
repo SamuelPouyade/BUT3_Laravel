@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/register.css') }}">
+</head>
+<body>
 <section class="space-y-6">
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
@@ -53,3 +59,5 @@
         </form>
     </x-modal>
 </section>
+</body>
+</html>
