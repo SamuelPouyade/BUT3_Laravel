@@ -20,6 +20,9 @@
                             Écrit par : {{ $article->user->name }} | Date : {{ $article->created_at }}
                         </p>
                         <p>{{ substr($article->Contenu, 0, 100) }}...</p>
+                        @if ($article->image)
+                            <img src="{{ asset('storage/' . $article->image) }}" alt="Image">
+                        @endif
                         <a href="{{ route('article.show', $article->id) }}" class="btn btn-outline-primary">En savoir plus</a>
                     </div>
                 </div>

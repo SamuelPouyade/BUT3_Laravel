@@ -1,0 +1,45 @@
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #e2e2e2;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+/* Style pour les étiquettes */
+label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+/* Style pour les champs de saisie */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Style pour les messages d'erreur */
+.text-red-600 {
+    color: #e53e3e;
+}
+
+/* Style pour le bouton d'inscription */
+button {
+    background-color: #4a90e2;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #357abd;
+}

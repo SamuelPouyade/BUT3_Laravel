@@ -13,7 +13,7 @@
         </div>
     @endif
 
-    <form action="{{ url('article') }}" method="POST">
+    <form action="{{ url('article') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="form-group mb-3">
@@ -24,6 +24,11 @@
         <div class="form-group mb-3">
             <label for="Contenu">Ajouter le contenu:</label>
             <textarea name="Contenu" id="Contenu" cols="30" rows="10" class="form-control"></textarea>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="image">Télécharger une image :</label>
+            <input type="file" class="form-control" id="image" name="image">
         </div>
 
         <button type="submit" class="btn btn-primary">Enregistrer</button>

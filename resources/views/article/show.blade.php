@@ -10,6 +10,10 @@
                         <h1>{{ $article->titre }}</h1>
                         <p class="lead">{{ $article->Contenu }}</p>
                         <p>Écrit par : {{ $article->user->name }} | Date de création : {{ $article->created_at }}</p>
+                        <div class="form-group mb-3">
+                            <label>Photo du site :</label>
+                            <img src="{{ asset('storage/' . $article->image) }}" alt="Image actuelle">
+                        </div>
                         <h2>Commentaires</h2>
                         @foreach ($article->commentaires as $commentaire)
                             <div class="">

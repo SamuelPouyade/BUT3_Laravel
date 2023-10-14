@@ -27,6 +27,10 @@
             <textarea name="Contenu" id="Contenu" cols="30" rows="10" class="form-control">{{ $article->Contenu }}</textarea>
         </div>
 
+        <div class="form-group mb-3">
+            <label>Image actuelle :</label>
+            <img src="{{ asset('storage/' . $article->image) }}" alt="Image actuelle">
+        </div>
 
         <button type="submit" class="btn btn-primary">Enregistrer</button>
     </form>

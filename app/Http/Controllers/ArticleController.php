@@ -19,7 +19,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::paginate(1);
+        $articles = Article::paginate(15);
 
         return view('article.index', ['articles' => $articles]);
     }
@@ -44,16 +44,28 @@ class ArticleController extends Controller
         $request->validate([
             'titre' => 'required',
             'Contenu' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif',
         ]);
 
-        $article = new Article([
-            'titre' => $request->input('titre'),
-            'Contenu' => $request->input('Contenu'),
-        ]);
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $article = new Article([
+                'titre' => $request->input('titre'),
+                'Contenu' => $request->input('Contenu'),
+                'image' => $imagePath,
+            ]);
+        } else {
+            $article = new Article([
+                'titre' => $request->input('titre'),
+                'Contenu' => $request->input('Contenu'),
+            ]);
+        }
+
 
         $article->user_id = auth()->user()->id;
         $article->auteur = auth()->user()->name;
         $article->save();
+
         $users = User::all();
 
         $notification = new ArticleCreatedNotification($article);
@@ -64,8 +76,6 @@ class ArticleController extends Controller
 
         return redirect('/')->with('success', 'Article ajouté avec succès');
     }
-
-
 
 
     /**
