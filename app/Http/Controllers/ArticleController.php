@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Article;
+use App\Models\User;
+use App\Notifications\ArticleCreatedNotification;
 use Illuminate\Http\Request;
+use App\Events\ArticleCreated;
 use Illuminate\Support\Facades\DB;
 
 
@@ -51,6 +54,13 @@ class ArticleController extends Controller
         $article->user_id = auth()->user()->id;
         $article->auteur = auth()->user()->name;
         $article->save();
+        $users = User::all();
+
+        $notification = new ArticleCreatedNotification($article);
+
+        foreach ($users as $user) {
+            $user->notify($notification);
+        }
 
         return redirect('/')->with('success', 'Article ajouté avec succès');
     }
