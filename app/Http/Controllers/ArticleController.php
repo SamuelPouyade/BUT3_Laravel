@@ -16,12 +16,10 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::paginate(15);
+        $articles = Article::paginate(1);
 
         return view('article.index', ['articles' => $articles]);
     }
-
-
 
 
     /**

@@ -28,6 +28,16 @@
                                 <button type="submit" class="btn btn-danger">Déconnexion</button>
                             </form>
                         </li>
+                        <li class="list-inline-item">
+                            <form id="logout-form" action="{{ route('profile.edit') }}" method="GET">
+                                @csrf
+                                <button type="submit" class="btn btn-danger">Modifier son profil</button>
+                            </form>
+                        </li>
+                        <li class="list-inline-item">
+                                <a class="btn btn-success" href="{{ route('article.create') }}">Ajouter un article</a>
+                        </li>
+
                     @else
                         <li class="list-inline-item">
                             <a href="{{ route('login') }}" class="btn btn-primary">Connexion</a>
@@ -45,7 +55,7 @@
 
 <div class="container-fluid mt-5 p-0">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 mx-auto text-center">
             <div class="white-band">
                 @yield('content')
             </div>
