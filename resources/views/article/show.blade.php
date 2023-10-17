@@ -9,7 +9,7 @@
                     <li class="list-group-item">
                         <h1>{{ $article->titre }}</h1>
                         <p class="lead">{{ $article->Contenu }}</p>
-                        <p>Écrit par : {{ $article->user->name }} | Date de création : {{ $article->created_at }}</p>
+                        <p>Écrit par : {{ $article->user->name }}</p>
                         <div class="form-group mb-3">
                             <label>Photo du site :</label>
                             <img src="{{ asset('storage/' . $article->image) }}" alt="Image actuelle">

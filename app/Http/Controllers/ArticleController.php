@@ -19,7 +19,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::paginate(15);
+        $articles = Article::paginate(5);
 
         return view('article.index', ['articles' => $articles]);
     }
@@ -44,8 +44,10 @@ class ArticleController extends Controller
         $request->validate([
             'titre' => 'required',
             'Contenu' => 'required',
+            'date' => 'required|date',
             'image' => 'image|mimes:jpeg,png,jpg,gif',
         ]);
+
 
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('images', 'public');
@@ -53,11 +55,13 @@ class ArticleController extends Controller
                 'titre' => $request->input('titre'),
                 'Contenu' => $request->input('Contenu'),
                 'image' => $imagePath,
+                'date' => $request->input('date'),
             ]);
         } else {
             $article = new Article([
                 'titre' => $request->input('titre'),
                 'Contenu' => $request->input('Contenu'),
+                'date' => $request->input('date'),
             ]);
         }
 
@@ -74,7 +78,7 @@ class ArticleController extends Controller
             $user->notify($notification);
         }
 
-        return redirect('/')->with('success', 'Article ajouté avec succès');
+        return redirect('/home')->with('success', 'Article ajouté avec succès');
     }
 
 
@@ -118,15 +122,26 @@ class ArticleController extends Controller
         $request->validate([
             'titre'=>'required',
             'Contenu'=> 'required',
+            'date' => 'required|date',
+            'image' => 'image|mimes:jpeg,png,jpg,gif',
         ]);
 
 
         $article = article::findOrFail($id);
-        $article->titre = $request->get('titre');
-        $article->content = $request->get('Contenu');
-        $article->update();
+        $article->titre = $request->input('titre');
+        $article->Contenu = $request->input('Contenu');
+        $article->date = $request->input('date');
+        if ($request->hasFile('image')) {
+            if ($article->image) {
+                Storage::disk('public')->delete($article->image);
+            }
+            $imagePath = $request->file('image')->store('images', 'public');
+            $article->image = $imagePath;
+        }
 
-        return redirect('/')->with('success', 'article Modifié avec succès');
+        $article->save();
+
+        return redirect('/home')->with('success', 'Article modifié avec succès');
 
     }
 
@@ -141,11 +156,11 @@ class ArticleController extends Controller
             if ($article->user_id === auth()->user()->id) {
                 $article->commentaires()->delete();
                 $article->delete();
-                return redirect('/')->with('success', 'article Supprimé avec succès');
+                return redirect('/home')->with('success', 'article Supprimé avec succès');
             }
         }
 
-        return redirect('/')->with('error', 'Vous n\'êtes pas autorisé à supprimer cet article.');
+        return redirect('/home')->with('error', 'Vous n\'êtes pas autorisé à supprimer cet article.');
 
     }
 

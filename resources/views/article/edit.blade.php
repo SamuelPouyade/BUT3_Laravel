@@ -13,7 +13,7 @@
         </div>
     @endif
 
-    <form method="post" action="{{ route('article.update', $article->id) }}">
+    <form method="post" action="{{ route('article.update', $article->id) }}" enctype="multipart/form-data">
         @method('PATCH')
         @csrf
 
@@ -25,6 +25,16 @@
         <div class="form-group mb-3">
             <label for="Contenu">Ajouter le contenu :</label>
             <textarea name="Contenu" id="Contenu" cols="30" rows="10" class="form-control">{{ $article->Contenu }}</textarea>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="date">Date :</label>
+            <input type="date" class="form-control" id="date" name="date" value="{{ $article->date }}">
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="image">Nouvelle image :</label>
+            <input type="file" class="form-control" id="image" name="image">
         </div>
 
         <div class="form-group mb-3">

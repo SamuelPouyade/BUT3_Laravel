@@ -27,6 +27,11 @@
             <textarea name="Contenu" id="Contenu" cols="30" rows="10" class="form-control"></textarea>
         </div>
 
+        <div class="form-group">
+            <label for="date">Date du concours de pêche</label>
+            <input type="date" name="date" class="form-control" id="date">
+        </div>
+
         <div class="form-group mb-3">
             <label for="image">Télécharger une image :</label>
             <input type="file" class="form-control" id="image" name="image">

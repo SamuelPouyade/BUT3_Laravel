@@ -17,7 +17,7 @@
                             <h2>{{ $article->titre }}</h2>
                         </a>
                         <p>
-                            Écrit par : {{ $article->user->name }} | Date : {{ $article->created_at }}
+                            Écrit par : {{ $article->user->name }}
                         </p>
                         <p>{{ substr($article->Contenu, 0, 100) }}...</p>
                         @if ($article->image)
