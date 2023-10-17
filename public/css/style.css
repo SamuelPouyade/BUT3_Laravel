@@ -4,10 +4,11 @@ body {
     background-color: #fff;
 }
 
+
 .header {
     background-color: #0074e4;
     color: #fff;
-    padding: 20px;
+    padding: 0;
     text-align: center;
 }
 
@@ -31,3 +32,7 @@ body {
     line-height: 1.5;
 }
 
+html, body, .container-fluid {
+    margin: 0;
+    padding: 0;
+}

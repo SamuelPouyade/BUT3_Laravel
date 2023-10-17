@@ -1,6 +1,7 @@
 @extends('home')
 
 @section('content')
+    <a href="{{ route('home') }}" class="btn btn-success">Retour à l'accueil</a>
     <h1>Ajouter un article</h1>
 
     @if ($errors->any())

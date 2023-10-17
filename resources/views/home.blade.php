@@ -9,8 +9,7 @@
 </head>
 
 <body>
-
-<div class="container-fluid mt-5 p-0">
+<div class="container-fluid">
     <div class="header bg-primary text-white">
         <div class="row align-items-center">
             <div class="col-md-2">
@@ -34,9 +33,11 @@
                                 <button type="submit" class="btn btn-danger">Modifier son profil</button>
                             </form>
                         </li>
-                        <li class="list-inline-item">
+                        @if(Route::currentRouteName() !== 'article.create')
+                            <li class="list-inline-item">
                                 <a class="btn btn-success" href="{{ route('article.create') }}">Ajouter un article</a>
-                        </li>
+                            </li>
+                        @endif
 
                     @else
                         <li class="list-inline-item">
