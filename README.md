@@ -11,3 +11,25 @@
 
 Ce projet est un projet scolaire. Il a pour but d'être un site communautaire ou chacune des associations de pêches pourront diffuser leurs différents concours de pêche. Ce site sera codé à l'aide de Laravel et Vue.js. La base de donnée utilisée est une base de donnée my_sql.
 
+
+## Commandes utiles
+
+### Créer une migration 
+
+php artisan make:migration create_articles_table
+
+
+### Lancer l'exécution de la migration
+
+php artisan migrate
+
+### Retour en arrière
+
+php artisan migrate:rollback
+
+### Lier les images 
+
+php artisan storage:link
+
+
+
