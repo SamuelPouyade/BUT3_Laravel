@@ -21,7 +21,7 @@
                         </p>
                         <p>{{ substr($article->Contenu, 0, 100) }}...</p>
                         @if ($article->image)
-                            <img src="{{ asset('storage/' . $article->image) }}" alt="Image">
+                            <img src="{{ asset('storage/' . $article->image) }}" alt="Image" class="article-image">
                         @endif
                         <a href="{{ route('article.show', $article->id) }}" class="btn btn-outline-primary">En savoir plus</a>
                     </div>

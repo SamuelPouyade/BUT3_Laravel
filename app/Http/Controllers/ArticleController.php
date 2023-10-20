@@ -24,6 +24,12 @@ class ArticleController extends Controller
         return view('article.index', ['articles' => $articles]);
     }
 
+    public function perso()
+    {
+        $articles = Article::paginate(5);
+
+        return view('article.article_perso', ['articles' => $articles]);
+    }
 
     /**
      * return le formulaire de création d'un article

@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
 });
 Route::controller(ArticleController::class)->group(function () {
     Route::get('/', 'index');
+    Route::get('/article/perso', [ArticleController::class, 'perso'])->name('article.article_perso');
     Route::get('/article/create', [ArticleController::class, 'create'])->name('article.create');
     Route::get('/article/{id}', [ArticleController::class, 'show'])->name('article.show');
     Route::get('/article/{id}/edit', [ArticleController::class, 'edit'])->name('article.edit');

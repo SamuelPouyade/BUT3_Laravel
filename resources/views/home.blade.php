@@ -15,10 +15,10 @@
             <div class="col-md-2">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo du site" class="img-fluid site-logo-small">
             </div>
-            <div class="col-md-6">
-                <h1>Concours de pêche en France</h1>
+            <div class="col-md-5">
+                <h1 class="rockwell-font">Concours de pêche en France</h1>
             </div>
-            <div class="col-md-4 text-end">
+            <div class="col-md-5 text-end">
                 <ul class="list-inline">
                     @auth
                         <li class="list-inline-item">
@@ -38,7 +38,11 @@
                                 <a class="btn btn-success" href="{{ route('article.create') }}">Ajouter un article</a>
                             </li>
                         @endif
-
+                        @if(Route::currentRouteName() !== 'article.article_perso')
+                            <li class="list-inline-item">
+                                <a class="btn btn-success" href="{{ route('article.article_perso') }}">Voir mes articles</a>
+                            </li>
+                        @endif
                     @else
                         <li class="list-inline-item">
                             <a href="{{ route('login') }}" class="btn btn-primary">Connexion</a>
@@ -63,6 +67,8 @@
         </div>
     </div>
 </div>
-
+<footer class="bg-primary text-white text-center py-2">
+    &copy; Samuel Pouyade <?php echo date("Y"); ?>
+</footer>
 </body>
 </html>

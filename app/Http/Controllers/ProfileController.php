@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Article;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -48,7 +48,8 @@ class ProfileController extends Controller
         ]);
 
         $user = $request->user();
-
+        $user->comments()->delete();
+        $user->articles()->delete();
         Auth::logout();
 
         $user->delete();
