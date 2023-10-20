@@ -31,6 +31,7 @@
             @endforeach
         </div>
     </div>
+
     <div class="d-flex justify-content-center">
         @include('vendor.pagination.default', ['paginator' => $articles])
     </div>

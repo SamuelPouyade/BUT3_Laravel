@@ -39,7 +39,7 @@
 
         <div class="form-group mb-3">
             <label>Image actuelle :</label>
-            <img src="{{ asset('storage/' . $article->image) }}" alt="Image actuelle">
+            <img src="{{ asset('storage/' . $article->image) }}" alt="Image actuelle" class="article-image">
         </div>
 
         <button type="submit" class="btn btn-primary">Enregistrer</button>

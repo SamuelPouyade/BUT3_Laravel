@@ -19,14 +19,14 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::paginate(5);
+        $articles = Article::with('user')->paginate(5);
 
         return view('article.index', ['articles' => $articles]);
     }
 
     public function perso()
     {
-        $articles = Article::paginate(5);
+        $articles = Article::with('user')->paginate(5);
 
         return view('article.article_perso', ['articles' => $articles]);
     }

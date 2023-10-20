@@ -4,8 +4,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/register.css') }}">
 </head>
 <body>
-<section class="space-y-6">
-    <header>
+<section class="flex flex-col items-center justify-center">
+    <header class="text-center mb-4">
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
             {{ __('Supprimer son compte') }}
         </h2>
